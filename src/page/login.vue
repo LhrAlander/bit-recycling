@@ -15,6 +15,7 @@
       </div>
       <div class="user-password flex-center">
         <input class="login-input" placeholder="Password" type="password">
+        <div class="border"></div>
       </div>
       <div class="btn-wrapper flex-center normal-login-wrapper">
         <button class='login-btn'>登录</button>
@@ -64,7 +65,7 @@ input:focus {
 header {
   box-sizing: border-box;
   padding-top: 1px;
-  height: 189px;
+  height: 169px;
   width: 100%;
   background: linear-gradient(to right, #6ee0ff, #32aafa);
 }
@@ -73,7 +74,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 52px;
+  margin-top: 32px;
   width: 100%;
   height: 137px;
 }
@@ -100,6 +101,8 @@ header {
   z-index: 100;
 }
 
+
+
 .form-main {
   margin-top: 82px;
 }
@@ -108,19 +111,28 @@ header {
   margin-bottom: 21px;
 }
 
+
 .login-input {
   width: 200px;
   height: 34px;
+  border-radius: 0 0 0 0;
   border-bottom: 2px solid #ddd;
 }
 
 
 .login-input:focus {
+  border: none;
+  outline: none;
+  border-radius: 0 0 0 0;
   border-bottom: 1px solid;
   border-image-source: linear-gradient(to right, #6ee0ff, #32aafa);
-   border-image-slice: 1;
-  border-image-width: 1;
+  border-image-slice: 1;
+  border-image-width: 0 0 1 0;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
 }
+
 
 .login-input::placeholder {
   font-family: San Francisco Display;
