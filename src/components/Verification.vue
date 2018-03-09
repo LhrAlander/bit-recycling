@@ -37,15 +37,14 @@
 }
 
 .signin-ver-input{
-    width: 100%;
+  width: 100%;
   font-family: PingFang-Regular;
-   padding-bottom: 10px;
-  
-   font-size: 22px;
-   border: none;
-   border-bottom: solid 2px #C9C9C9;
-   outline: medium;
-   text-align: center ;
+  padding-bottom: 10px;
+  font-size: 22px;
+  border: none;
+  border-bottom: solid 2px #C9C9C9;
+  outline: medium;
+  text-align: center ;
 }
 
 body{
