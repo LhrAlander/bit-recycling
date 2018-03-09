@@ -10,20 +10,24 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Signin',
-      component: Signin
-    },
-    {
-      path: '/verification',
-      name: 'Verification',
-      component: Verification,
-      name: 'Login',
-      component: Login,
+      name: Login,
+       component: Login,
       children: [
         {
           path: '/login',
           name: Login,
           component: Login
+        },
+        {
+          path: '/verification',
+          name: 'Verification',
+          component: Verification, 
+        }
+        ,
+        {
+          path: '/signin',
+          name: 'Signin',
+          component: Signin, 
         }
       ]
     }

@@ -33,6 +33,7 @@
   width: 308px;
 }
 .siginin-tel-prompt{
+  text-align: center;
   color: #FFF;
 }
 .active{

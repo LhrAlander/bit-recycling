@@ -35,11 +35,12 @@
   margin-top: 107px;
   width: 308px;
 }
-.signin-ver-input:focus::-webkit-input-placeholder{
-    color:transparent;
-}
+
 .signin-ver-input{
-   page-break-after: auto;
+    width: 100%;
+  font-family: PingFang-Regular;
+   padding-bottom: 10px;
+  
    font-size: 22px;
    border: none;
    border-bottom: solid 2px #C9C9C9;
