@@ -10,6 +10,11 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'Login',
+      component: Login,
+    },
+    {
+      path: '/signin',
       name: 'Signin',
       component: Signin
     },
@@ -17,15 +22,11 @@ export default new Router({
       path: '/verification',
       name: 'Verification',
       component: Verification,
-      name: 'Login',
-      component: Login,
-      children: [
-        {
-          path: '/login',
-          name: Login,
-          component: Login
-        }
-      ]
+    },
+    {
+      path: '/login',
+      name: Login,
+      component: Login
     }
   ]
 })
