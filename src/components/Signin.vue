@@ -12,75 +12,75 @@
   
 </template>
 <style>
-.signin-bg{
+.signin-bg {
   height: 93px;
   width: 100%;
-  background: linear-gradient(to right, #6EE0FF, #32AAFA); ;
+  background: linear-gradient(to right, #6ee0ff, #32aafa);
 }
 
-.signin-bg-masking{
-  position:relative;
-  bottom:-63px;
-  border-width:15px;
+.signin-bg-masking {
+  position: relative;
+  bottom: -63px;
+  border-width: 15px;
   border-right-width: 50vw;
   border-left-width: 50vw;
-  border-style:solid;
-  border-color:transparent transparent white white ;
+  border-style: solid;
+  border-color: transparent transparent white white;
 }
-.signin-tel{
-  margin:0 auto ;
+.signin-tel {
+  margin: 0 auto;
   margin-top: 107px;
   width: 308px;
 }
-.siginin-tel-prompt{
-  color: #FFF;
+.siginin-tel-prompt {
+  text-align: cAenter;
+  color: #fff;
 }
-.active{
-  color: #0188FB;
+.active {
+  color: #0188fb;
 }
-.signin-tel-input{
-   width: 100%;
+.signin-tel-input {
+  width: 100%;
   font-family: PingFang-Regular;
-   padding-bottom: 10px;
-  
-   font-size: 22px;
-   border: none;
-   border-bottom: solid 2px #C9C9C9;
-   outline: medium;
-   text-align: center ;
-}
-.signin-tel-input:focus::-webkit-input-placeholder{
-    color:transparent;
-}
-.signin-tel-input::-webkit-input-placeholder{
+  padding-bottom: 10px;
+
   font-size: 22px;
-   color: #999DA5;
+  border: none;
+  border-bottom: solid 2px #c9c9c9;
+  outline: medium;
+  text-align: center;
+}
+.signin-tel-input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+.signin-tel-input::-webkit-input-placeholder {
+  font-size: 22px;
+  color: #999da5;
 }
 @font-face {
   font-family: PingFang-Regular;
   src: url(../assets/font/PingFangRegular.ttf);
 }
-body{
+body {
   margin: 0;
 }
 </style>
 <script>
 export default {
-   data() {
+  data() {
     return {
-      focus:false
-    }
+      focus: false
+    };
   },
-  methods:{
-   isfocus:function(){
-     this.focus = true
-   },
-   isblur:function(){
-     this.focus = false
-   }
-    
+  methods: {
+    isfocus: function() {
+      this.focus = true;
+    },
+    isblur: function() {
+      this.focus = false;
+    }
   }
-}
+};
 </script>
 
 
