@@ -1,15 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-
+import Signin from '@/components/Signin'
+import Verification from '@/components/Verification'
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'Signin',
+      component: Signin
+    },
+    {
+      path: '/verification',
+      name: 'Verification',
+      component: Verification
     }
   ]
 })
