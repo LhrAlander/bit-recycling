@@ -1,20 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Signin from '@/components/Signin'
-import Verification from '@/components/Verification'
-<<<<<<< HEAD
-import Category from '@/components/Category'
-import Personal from '@/page/Personal'
-import Login from '@/page/Login'
-import Index from '@/page/Index'
-=======
+import Category from '@/page/Category'
+import Signin from '@/page/Signin'
+import Verification from '@/page/Verification'
 import Personal from '@/page/Personal'
 import Login from '@/page/Login'
 import Index from '@/page/Index'
 import Price from '@/page/Price'
 import CompanyDetail from '@/page/CompanyDetail'
->>>>>>> c8fe4775c52f922efbaa211e89b29c7387b32eee
-
 Vue.use(Router)
 
 export default new Router({
@@ -45,20 +38,19 @@ export default new Router({
       component: Personal
     },
     {
-<<<<<<< HEAD
-      path: '/category',
-      name: Category,
-      component: Category
-=======
       path: '/price',
       name: Price,
       component: Price
     },
     {
+      path: '/category',
+      name: Category,
+      component: Category
+    },
+    {
       path: '/companyDetail',
       name: CompanyDetail,
       component: CompanyDetail
->>>>>>> c8fe4775c52f922efbaa211e89b29c7387b32eee
     }
   ]
 })

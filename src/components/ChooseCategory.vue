@@ -13,7 +13,7 @@
                 </div>
             </div>
             <!-- 点击后的遮罩层 -->
-            <div class="mask right" v-bind:class="{'move':ismove,'leave':!ismove}">
+            <div class="mask right" v-bind:class="{'move':ismove,'leave':!ismove,'relative':firstClick}">
                 <div class="category-box">
                     <div class="category-icon" :class="{'active':item.checked}" @click="selected(item)" v-for="item in categorise">
                         <i class="icon iconfont icon-icon-test "></i> {{item.name}}
@@ -34,6 +34,7 @@ export default {
     return {
       ismove: false,
       isactive: false,
+      firstClick:false,
       categorise: [
           {name:"塑料瓶",checked:false}, 
           {name:"塑料容器",checked:false}, 
@@ -44,6 +45,7 @@ export default {
   methods: {
     slide: function() {
       this.ismove = !this.ismove;
+      this.firstClick = true;
     },
     selected: function(item) {
       item.checked = !item.checked;
@@ -124,14 +126,15 @@ export default {
 .category-icon:last-child {
   margin-right: 0px;
 }
-.move {
+.relative{
   position: relative;
+}
+.move {
   left: -370px;
   animation: move 1s;
   -webkit-animation: move 1s; /*Safari and Chrome*/
 }
 .leave {
-  position: relative;
   animation: leave 1s;
   -webkit-animation: leave 1s; /*Safari and Chrome*/
 }
