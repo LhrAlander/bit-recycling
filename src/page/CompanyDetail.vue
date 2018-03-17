@@ -1,5 +1,5 @@
 <template>
-  <div class="company-detail-wrapper">
+  <div ref='main' class="company-detail-wrapper">
     <header>
     </header>
     <main>
@@ -54,19 +54,24 @@
       </div>
 
     </main>
-    <my-footer class='footer'></my-footer>
+    <my-footer ref='footer' class='footer'></my-footer>
   </div>
 </template>
 <script>
-import MyFooter from '@/components/MyFooter'
+import MyFooter from "@/components/MyFooter";
 export default {
-   components: {
-    MyFooter
+  mounted() {
+    // 重绘页面高度完成滚动条
+    this.$refs.main.style.height = `${this.$refs.main.clientHeight + 58}px`
+    console.log(this.$refs.main.clientHeight, this.$refs.footer.clientHeight)
+    
   },
+  components: {
+    MyFooter
+  }
 };
 </script>
 <style scoped>
-
 .company-detail-wrapper {
   font-family: "苹方";
 }
@@ -142,7 +147,8 @@ main {
 
 .price-info {
   width: 100%;
-  height: 72px;
+  padding: 4px;
+  height: 70px;
   margin-top: 15px;
   margin-bottom: 18px;
   overflow-x: scroll;
@@ -206,7 +212,7 @@ main {
   box-sizing: border-box;
   height: 34px;
   padding: 0 7px 0 4px;
-  border-bottom: 1px solid #F2F2F2;
+  border-bottom: 1px solid #f2f2f2;
 }
 .company-info .title {
   font-size: 15px;
@@ -225,7 +231,7 @@ main {
 
 .company-info .detail {
   box-sizing: border-box;
-   padding: 0 7px 0 4px;
+  padding: 0 7px 0 4px;
   margin-top: 10px;
   height: 100px;
 }
@@ -253,7 +259,7 @@ main {
   border: none;
   border-radius: 21px;
   background: linear-gradient(to right, #6ee0ff, #32aafa);
-  font-family: '苹方';
+  font-family: "苹方";
   color: #fff;
   font-size: 16px;
 }
