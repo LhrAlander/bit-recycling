@@ -16,6 +16,9 @@ export default {};
 </script>
 <style scoped>
 footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   height: 58px;
   width: 100%;
   background-color: #fff;
