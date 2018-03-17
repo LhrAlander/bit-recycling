@@ -56,28 +56,48 @@
     </section>
     <section class="main-function">
       <div class="main-fn-item">
-
+        <div class="icon-wrapper offline-recycle flex-center">
+          <img src="/static/icon/simpleRecycle.png" alt="线下回收">
+        </div>
+        <div class="fn-title">
+          线下回收
+        </div>
       </div>
       <div class="main-fn-item">
-        
+        <div class="icon-wrapper create-order flex-center">
+          <img src="/static/icon/createOrder.png" alt="一键下单">
+        </div>
+        <div class="fn-title">
+          一键下单
+        </div>
       </div>
       <div class="main-fn-item">
-        
+        <div class="icon-wrapper scan-code flex-center">
+          <img src="/static/icon/scanCode.png" alt="扫码开箱">
+        </div>
+        <div class="fn-title">
+          扫码开箱
+        </div>
       </div>
       <div class="main-fn-item">
-        
+        <div class="icon-wrapper acativity flex-center">
+          <img src="/static/icon/acativity.png" alt="环保活动">
+        </div>
+        <div class="fn-title">
+          环保活动
+        </div>
       </div>
     </section>
   </main>
-  <footer>
-    <div class="footer-item"></div>
-    <div class="footer-item"></div>
-    <div class="footer-item"></div>
-  </footer>
+  <my-footer class='index-footer'></my-footer>
 </div>
 </template>
 <script>
+import MyFooter from '@/components/MyFooter'
 export default {
+  components: {
+    MyFooter
+  },
   data() {
     return {
       swipeImgSrc: []
@@ -97,7 +117,7 @@ export default {
 <style scoped>
 .wrapper {
   background-color: #ddd;
-  font-family: '苹方';
+  font-family: "苹方";
 }
 
 .swipe-item-img {
@@ -147,7 +167,7 @@ export default {
 .price-item-detail {
   color: #949494;
   font-size: 12px;
-  text-align:justify;
+  text-align: justify;
 }
 
 .no-top-border {
@@ -168,22 +188,53 @@ footer {
 }
 
 .main-fn-item {
-  width: 49px;
-  height: 53px;
-  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
-footer {
+.icon-wrapper {
+  width: 36px;
+  height: 36px;
+}
+
+.icon-wrapper img {
+  width: 24px;
+  height: 24px;
+}
+
+.fn-title {
+  font-size: 12px;
+}
+
+.offline-recycle,
+.create-order,
+.scan-code,
+.acativity {
+  border-radius: 50%;
+  border: 2px solid #F2F2F2;
+}
+
+.offline-recycle {
+  background-color: #52d322;
+}
+
+.create-order {
+  background-color: #FF8888;
+}
+
+.scan-code {
+  background-color: #56A0FC;
+}
+
+.acativity {
+  background-color: #FFAA42;
+}
+
+.index-footer {
   margin-top: 29px;
-  height: 58px;
-  width: 100%;
-  background-color: #fff;
 }
 
-.footer-item {
-  width: 25px;
-  height: 25px;
-  border: 1px solid #ddd;
-}
 </style>
 
