@@ -1,6 +1,6 @@
 <template>
 <div class="basket">
-  <section class="panel">
+  <section class="b-panel">
       <div class="add-time">
           <span class="choose-btn"  @click="Click($event)"></span>
           <span class="add-time-txt">2018.04.01 加入</span>
@@ -31,7 +31,7 @@
       </div>
 
   </section>
-    <section class="panel">
+    <section class="b-panel">
       <div class="add-time">
           <span class="choose-btn" @click="Click($event)"></span>
           <span class="add-time-txt">2018.04.01 加入</span>
@@ -60,18 +60,7 @@
               </div>  
           </div>
       </div>
-      <div class="add-category">
-          <div class="choose-btn" @click="Click($event)"></div>
-           <div class="category-icon">
-              <img class="category-icon-img" src="/static/icon/bottle.png" alt="">
-          </div>
-          <div class="category-txt">
-              <div class="txt-title">废报纸</div>
-              <div class="today-price-txt">今日价格
-                  <div class="today-price"> <span class="price-number">￥ 1.2</span><span class="price-unit">元/斤</span></div>
-              </div>  
-          </div>
-      </div>
+
 
   </section>
  <footer class="foot">
@@ -133,7 +122,7 @@ export default {
     height: 600px;
     background-color: #F2F2F2;
 }
-.panel{
+.b-panel{
     margin-bottom: 12px;
     font-family: "苹方";
     width: 100%;
@@ -144,7 +133,7 @@ export default {
     line-height: 44px;
     height: 44px;
     margin-left: 20px;
-    border-bottom: #E4E4E4 solid 1px;
+
 }
 .add-time-txt{
     margin-left: 21px;
@@ -167,7 +156,7 @@ export default {
     display: flex;
     height: 74px;
     margin-left: 20px;
-    border-bottom: #F2F2F2 solid 1px;
+    border-top: #F2F2F2 solid 1px;
 }
 .category-icon{
   display: flex;

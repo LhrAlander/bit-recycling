@@ -10,19 +10,22 @@
       </div>
 
     </header>
-    <main class="content">
+    <main class="home-content">
       <div class="passage">
         <div class="passage-container">
+          <router-link to="/orderList">
           <div class="passage-item">
             <img src="/static/icon/orderSearch.png" alt="" class="passage-item-icon">
-
             <div class="passage-item-txt">点滴记录</div>
           </div>
+          </router-link>
+          <router-link to="/">
           <div class="passage-item">
             <img src="/static/icon/scan.png" alt="" class="passage-item-icon">
 
             <div class="passage-item-txt">扫码开箱</div>
           </div>
+          </router-link>
           <router-link to="/leaderboard">
             <div class="passage-item">
             <img src="/static/icon/ranking.svg" alt="" class="passage-item-icon">
@@ -43,6 +46,7 @@
           </div>
         </div>
       </div>
+      <div class="gap"></div>
     </main>
     <footer class="nav-bar">
       <router-link to="/userHome">
@@ -67,6 +71,7 @@
   </div>
 </template>
 <script>
+import util from "@/utils/index.js"
 export default {
   data() {
     return {
@@ -81,7 +86,7 @@ export default {
           title: "废品价格",
           imgUrl: "/static/icon/price.png",
           bgUrl: "/static/img/wave-2.png",
-          router: "/price"
+          router: "/category"
         },
         {
           title: "点滴公益",
@@ -97,6 +102,9 @@ export default {
         }
       ]
     };
+  },
+  mounted(){
+    util.getUserInfo(util.getQueryVariable("code"));
   }
 };
 </script>
@@ -121,8 +129,8 @@ export default {
 .header-txt {
   margin-top: 10px;
 }
-.content {
-  font-family: PingFang-Regular;
+.home-content {
+  font-family: "苹方";
   width: 100%;
   position: relative;
   top: -48px;
@@ -155,6 +163,7 @@ export default {
 .passage-item-txt {
   position: absolute;
   bottom: 0;
+  color: #333;
   font-size: 12px;
   white-space: nowrap;
 }

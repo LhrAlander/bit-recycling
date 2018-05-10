@@ -24,6 +24,7 @@ h1,h2,h3,h4,h5,h6 {
   width: 100%;
   height: 49px;
   border-top: #e4e4e4 solid 1px;
+  background: #FFF;
 }
 .nav-item {
   margin-top: 3px;
@@ -42,6 +43,9 @@ h1,h2,h3,h4,h5,h6 {
   text-align: center;
   position: relative;
   top: -10px;
+}
+.gap{
+  height:  49px;
 }
 img {
   width: 100%;

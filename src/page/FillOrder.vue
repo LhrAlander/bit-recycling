@@ -182,7 +182,7 @@ export default {
 .type-btn{
     align-self: center;
     position: absolute;
-    right: 8%;
+    right: 27px;
     height: 27px;
     width: 62px;
     border: #32aafa solid 1px;

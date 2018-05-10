@@ -2,7 +2,9 @@
     <div class="box">
         <div class="container">
             <div class="content left" @click="slide">
-                <div class="main-icon"></div>
+                <div class="main-icon">
+                  <img src="/static/img/水瓶.png" alt="">
+                </div>
                 <div class="category ">
                     <div class="category-title">废塑料</div>
                     <div class="category-content">
@@ -54,11 +56,14 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .box {
   margin: 5px;
   width: 365px;
   overflow: hidden;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 0 8px rgba(204, 204, 204, 0.349019607843137);
 }
 .container {
   font-family: PingFang-Regular;
@@ -185,10 +190,11 @@ export default {
     left: 0px;
   }
 }
-img {
+.main-icon img {
   color: #fff;
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
+  margin: 4px;
 }
 @font-face {
   font-family: PingFang-Regular;

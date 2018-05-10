@@ -2,9 +2,20 @@
   <div class="leaderboard">
       <header class="head">每周一凌晨刷新</header>
       <main class="lb-container">
-          <div class="lb-item" v-for="item in userData">
+          <div class="lb-item" v-for="item in userData1">
               <span class="lb-crown">
                   <img  v-bind:src="item.crownUrl" alt="">
+              </span>
+              <span class="lb-ranking">{{item.ranking}}</span>
+              <span class="lb-avatar">
+                 <img  v-bind:src="item.avatarUrl" alt="">
+              </span>
+              <span class="lb-name">{{item.name}}</span>
+              <span class="lb-amount">{{item.amount}}元</span>
+          </div>
+          <div class="lb-item" v-for="item in userData2">
+              <span class="lb-crown">
+                
               </span>
               <span class="lb-ranking">{{item.ranking}}</span>
               <span class="lb-avatar">
@@ -25,10 +36,11 @@
 export default {
     data(){
         return{
-            userData:[
+            userData1:[
                 {ranking:1,avatarUrl:"/static/img/avatar-1.png",name:"海绵宝宝强迫症",amount:1000,crownUrl:"/static/img/crown-1.png"},
                 {ranking:2,avatarUrl:"/static/img/avatar-2.png",name:"拿着试卷唱忐忑",amount:800,crownUrl:"/static/img/crown-2.png"},
-                {ranking:3,avatarUrl:"/static/img/avatar-3.png",name:"张油条",amount:700,crownUrl:"/static/img/crown-3.png"},
+                {ranking:3,avatarUrl:"/static/img/avatar-3.png",name:"张油条",amount:700,crownUrl:"/static/img/crown-3.png"}
+            ],userData2:[
                 {ranking:4,avatarUrl:"/static/img/avatar-4.png",name:"喋喋以喋以喋喋",amount:600,crownUrl:""},
                 {ranking:5,avatarUrl:"/static/img/avatar-5.png",name:"张磊132",amount:550,crownUrl:""},
                 {ranking:6,avatarUrl:"/static/img/avatar-6.png",name:"佩德罗",amount:400,crownUrl:""},
@@ -36,7 +48,7 @@ export default {
                 {ranking:8,avatarUrl:"/static/img/avatar-8.png",name:"幼稚园园长☀",amount:300,crownUrl:""},
                 {ranking:9,avatarUrl:"/static/img/avatar-9.png",name:"请眼熟我",amount:298,crownUrl:""},
                 {ranking:10,avatarUrl:"/static/img/avatar-10.png",name:"高速公鹿",amount:198,crownUrl:""}
-            ]
+            ],
         }
     },
     mounted(){
@@ -100,7 +112,7 @@ export default {
     align-self: center;
     margin-left: 10px;
     height: 46px;
-    width: 44px;
+    width: 46px;
 }
 .lb-name{
     font-size: 14px;

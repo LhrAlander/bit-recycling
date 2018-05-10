@@ -10,7 +10,7 @@
             <div class="sell-btn" @click="sell()">一点出售</div>
         </header>
         <main class="content">
-            <div class="sell-info-box">
+            <div class="sell-info-box" v-for="i in 5">
                 <div class="sell-info">
                     <span class="info-point">40益点</span>
                     <span class="info-price">￥4</span>
@@ -38,7 +38,7 @@
                         <input type="text" class="price-input" v-model="price" placeholder="请输入售价">
                          <div class="unit" v-if="puShow">元</div>
                     </div>
-                    <div class="confirm-btn">
+                    <div class="confirm-btn" @click="sell()">
                         确认回收
                     </div>
                     <div class="tip">
@@ -58,7 +58,7 @@
 export default {
   data() {
     return {
-      show: true,
+      show: false,
       amount: "",
       price: "",
       auShow: false,

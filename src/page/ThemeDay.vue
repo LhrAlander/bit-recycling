@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="options-box" v-show="active">
-            <div class="option" v-for="item in options" :class="{'selected':item.selected}" @click="Select(item)" >
+            <div class="theme-option" v-for="item in options" :class="{'selected':item.selected}" @click="Select(item)" >
                 {{item.label}}
             </div>
 
@@ -194,7 +194,7 @@ export default {
     width: 100vw;
 
 }
-.option{
+.theme-option{
     color: #333;
     text-align: center;
     width: 90%;
