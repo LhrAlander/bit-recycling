@@ -6,8 +6,19 @@ import Verification from '@/page/Verification'
 import Personal from '@/page/Personal'
 import Login from '@/page/Login'
 import Index from '@/page/Index'
-import Price from '@/page/Price'
+import Price from '@/page/Price/index'
 import CompanyDetail from '@/page/CompanyDetail'
+import UserHome from '@/page/UserHome/index'
+import Basket from '@/page/Basket'
+import Leaderboard from '@/page/Leaderboard'
+import TradingHall from '@/page/TradingHall'
+import Charity from '@/page/Charity'
+import FillOrder from '@/page/FillOrder'
+
+import ThemeDay from '@/page/ThemeDay'
+import OrderList from '@/page/OrderList'
+import Evaluation from '@/page/Evaluation'
+
 Vue.use(Router)
 
 export default new Router({
@@ -51,6 +62,53 @@ export default new Router({
       path: '/companyDetail',
       name: CompanyDetail,
       component: CompanyDetail
+    },
+    {
+      path: '/userHome',
+      name: UserHome,
+      component: UserHome
+    },
+    {
+      path: '/basket',
+      name: Basket,
+      component: Basket
+    },
+    {
+      path: '/leaderboard',
+      name: Leaderboard,
+      component: Leaderboard
+    },
+    {
+      path: '/tradingHall',
+      name: TradingHall,
+      component: TradingHall
+    },
+    {
+      path: '/charity',
+      name: Charity,
+      component: Charity
+    },
+    {
+      path: '/fillOrder',
+      name: FillOrder,
+      component: FillOrder
+    },
+    {
+      path: '/themeDay',
+      name: ThemeDay,
+      component: ThemeDay
+    },
+    ,
+    {
+      path: '/orderList',
+      name: OrderList,
+      component: OrderList
+    }
+    ,
+    {
+      path: '/evaluation',
+      name: Evaluation,
+      component: Evaluation
     }
   ]
 })

@@ -61,6 +61,7 @@ export default {
   overflow: hidden;
 }
 .container {
+  font-family: PingFang-Regular;
   display: flex;
   width: 800px;
   height: 80px;
@@ -87,6 +88,7 @@ export default {
 }
 .category-title {
   font-size: 18px;
+  color: #333333;
   font-weight: bold;
 }
 .mask {
@@ -110,6 +112,10 @@ export default {
   margin-left: 29px;
   width: 240px;
   height: 65px;
+}
+.category-content{
+  color: #949494;
+  font-size: 12px;
 }
 .category-icon {
   margin-right: 14px;
@@ -183,6 +189,10 @@ img {
   color: #fff;
   width: 100%;
   height: 100%;
+}
+@font-face {
+  font-family: PingFang-Regular;
+  src: url(../assets/font/PingFangRegular.ttf);
 }
 </style>
 

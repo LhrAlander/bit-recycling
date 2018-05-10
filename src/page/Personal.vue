@@ -6,20 +6,40 @@
   <div class="person-content">
     <div class="personal-avatar"></div>
     <div class="personal-login"> 立即登录</div>
-    <div class="personal-welcome">欢迎来到点滴回收</div>
     <div class="personal-function">
        <div class="func-item" v-for="item in func">
            <div class="func-item-img"> <img  v-bind:src="item.url" alt=""></div>
-           <div class="func-item-name">{{item.name}}</div>
+           <div class="func-item-title">{{item.title}}</div>
        </div>
     </div>
     <div class="personal-option">
         <div class="option-item" v-for="item in options">
-           {{item}}
-           <i class="fa  fa-angle-right angle fa-2x"></i>
+           <div class="option-item-img pull-left"> <img  v-bind:src="item.url" alt=""></div>
+           {{item.title}}
+           <i class="fa fa-angle-right angle fa-2x"></i>
         </div>
     </div>
     </div>
+    <footer class="nav-bar">
+      <router-link to="/userHome">
+      <div class="nav-item" >
+        <img src="/static/icon/home.png" alt="">
+        <div class="nav-label">首页</div>
+      </div>
+      </router-link>
+      <router-link to="/basket">
+      <div class="nav-item" >
+        <img src="/static/icon/box.png" alt="">
+        <div class="nav-label">回收筐</div>
+      </div>
+      </router-link>
+      <router-link to="/personal">
+      <div class="nav-item" >
+        <img src="/static/icon/personal-active.png" alt="">
+        <div class="nav-label">我的</div>
+      </div>
+      </router-link>
+    </footer>
 
 </div>
 </template>
@@ -38,10 +58,10 @@
 .personal-bg{
  
   position: relative;
-  top: -130vh;
-  right: 52vh;
-  width:160vh;
-  height: 160vh;
+  top: -145vh;
+  right: 105vw;
+  width:310vw;
+  height: 310vw;
   border-radius: 80%;
 
   background: linear-gradient(to right, #6ee0ff 25%, #32aafa 50%);
@@ -62,8 +82,9 @@
     background-color: #cccccc
 }
 .personal-login{
+    font-family: "苹方";
     margin: 0 auto;
-    margin-top: 9px;
+    margin-top: 21px;
     width: 119px;
     height: 30px;
     border-radius: 15px;
@@ -73,19 +94,16 @@
     line-height: 30px;
     font-size: 16px;
 }
-.personal-welcome{
-     margin-top: 6px;
-    color:white;
-    text-align: center;
-}
+
 .personal-function{
     margin-top: 30px;
     border-bottom: #F2F2F2 solid 2px;
     display: flex;
 }
 .func-item{
+     font-family: "苹方";
     text-align: center;
-    height: 80px;
+    height: 110px;
     width: 25%;
     font-size: 12px;
     font-family: Arial, Helvetica, sans-serif;
@@ -93,14 +111,22 @@
 }
 .func-item-img{
     margin: 0 auto;
-    margin-top: 14px;
-    width: 30px;
-    height: 30px;
+    margin-top: 44px;
+    margin-bottom: 8px;
+    width: 24px;
+    height: 24px;
+}
+.option-item-img{
+    margin: 8px 8px 8px 21px;
+
+    width: 24px;
+    height: 24px;
 }
 .personal-option{
     width: 100%;
 }
 .option-item{
+     font-family: "苹方";
      padding: 0 20px;
      line-height: 50px;
      height: 50px;
@@ -111,10 +137,10 @@
     line-height: 50px;
     color: #d3d3d3;
 }
-img{width:100%;height:100%;}
-@font-face {
-  font-family: PingFang-Regular;
-  src: url(../assets/font/PingFangRegular.ttf);
+
+img {
+  width: 100%;
+  height: 100%;
 }
 body {
   font-family:PingFang-Regular;
@@ -125,13 +151,23 @@ export default {
    data() {
     return {
       func:[
-          {name:'待上门',url:'/static/img/door.png'},
-          {name:'待确认',url:'/static/img/door.png'},
-          {name:'已完成',url:'/static/img/door.png'},
-          {name:'全部订单',url:'/static/img/door.png'},],
+          {title:'待上门',url:'/static/img/door.png'},
+          {title:'待确认',url:'/static/icon/order-processing.png'},
+          {title:'已完成',url:'/static/icon/order-over.png'},
+          {title:'全部订单',url:'/static/icon/order.png'}],
      
-      options:['我的钱包','我的地址簿','联系客服','帮助和反馈','设置']
+      options:[
+          {title:'我的钱包',url:'/static/icon/钱包.png'},
+          {title:'我的地址簿',url:'/static/icon/地址.png'},
+          {title:'成为大商户',url:'/static/icon/地址.png'},
+          {title:'联系客服',url:'/static/icon/客服.png'},
+          {title:'帮助和反馈',url:'/static/icon/问题反馈.png'},
+          {title:'设置',url:'/static/icon/设置.png'},
+          ]
     };
+  },
+  methods:{
+      
   }
 }
 </script>

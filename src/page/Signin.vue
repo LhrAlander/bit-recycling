@@ -11,7 +11,7 @@
 </div>
   
 </template>
-<style>
+<style scoped>
 .signin-bg {
   height: 93px;
   width: 100%;
