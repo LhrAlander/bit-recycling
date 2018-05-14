@@ -6,6 +6,8 @@ import '@/assets/css/normal.css'
 import 'mint-ui/lib/style.css'
 import MintUI from 'mint-ui'
 import $ from 'jquery'
+import VueResource from 'vue-resource'
+Vue.use(VueResource)
 Vue.use(MintUI)
 
 Vue.config.productionTip = false

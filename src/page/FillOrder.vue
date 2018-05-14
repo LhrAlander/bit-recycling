@@ -1,297 +1,381 @@
 <template>
-    <div class="fill-order">
-        <header class="add-addr">
-            <div class="addr-btn">
-                +添加地址
-            </div>
-
-        </header>
-
-            <div class="order-time">
-                <span class="order-time-label">上门时间</span>
-                 <span class="order-time-option">立即(默认)</span>
-            </div>
-            <div class="type-panel">
-                <div class="type-item">
-                    <div class="type-item-contanier">
-                      <div class="type-label">废报纸</div>
-                      <div class="type-price">0.68元/斤</div>
-                      <div class="type-btn" @click="animateEnter()">{{selectedOptions}}</div>
-                      <div class="weight-options" @click="animateLeave()">
-                          <div class="weight-option-item" v-for="item in options" :class="{'selected':item.selected}" @click="Select(item)">
-                              {{item.label}}
-                          </div>
-                      </div>
-                    </div>
-                </div>
-                <div class="type-item">
-                    <div class="type-item-contanier">
-                      <div class="type-label">废报纸</div>
-                      <div class="type-price">0.68元/斤</div>
-                      <div class="type-btn" >请选择</div>
-                 
-                    </div>
-                </div>
-                <div class="type-item">
-                    <div class="type-item-contanier">
-                      <div class="type-label">废报纸</div>
-                      <div class="type-price">0.68元/斤</div>
-                      <div class="type-btn" >请选择</div>
-                     
-                    </div>
-                </div>
-                 <div class="type-item">
-                    <div class="type-item-contanier">
-                      <div class="type-label">废报纸</div>
-                      <div class="type-price">0.68元/斤</div>
-                      <div class="type-btn" >请选择</div>
-                     
-                    </div>
-                </div>
-               
-            </div>
-            <div class="pic-panel">
-                <div class="pic-label">
-                    上传图片
-                </div>
-                <div class="pic-btn">
-                    <img src="/static/icon/add.png" alt="">
-                </div>
-            </div>
-            <div class="msg-panel">
-                <div class="msg-label">
-                    留言
-                </div>
-                <input type="text" class="msg-input" placeholder="给回收员捎句话">
-            </div>
-            <footer class="order-foot">
-                <div class="order-btn">
-                    一点回收
-                </div>
-                <div class="order-tips">
-                    切换至大商户回收模式
-                </div>
-            </footer>
+  <div class="fill-order">
+    <header class="add-addr">
+      <router-link to="/address/">
+        <div class="addr-btn" v-if="$route.params.id == 0">
+          +添加地址
+        </div>
+        <div class="addr-info" v-for="item in addressData" v-if="$route.params.id == item.Id">
+          {{item.location}}{{item.detail}}
+        </div>
+      </router-link>
+    </header>
+    <div class="order-time">
+      <span class="order-time-label">上门时间</span>
+      <span class="order-time-option">立即(默认)</span>
     </div>
+    <div class="type-panel">
+      <div class="type-item" v-for="(item,index) in type">
+        <div class="type-item-contanier">
+          <div class="type-label">{{item.label}}</div>
+          <div class="type-price">{{item.price}}元/斤</div>
+          <div class="type-btn" @click="animateEnter(index)">{{item.selectedOptions}}</div>
+          <div class="weight-options" @click="animateLeave(index)">
+            <div class="weight-option-item" v-for="(Opitem,index) in item.options" :class="{'selected':Opitem.selected}" @click="Select(item,Opitem)">
+              {{Opitem.label}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pic-panel">
+
+      <div class="pic-label">
+        上传图片
+      </div>
+      <div class="pic-btn">
+        <img src="/static/icon/add.png" alt="" id="blah">
+      </div>
+      <input type="file" accept="image/*" capture="camera" class="file-btn" @change="Change($event)" id="imgInp">
+    </div>
+    <div class="msg-panel">
+      <div class="msg-label">
+        留言
+      </div>
+      <input type="text" class="msg-input" placeholder="给回收员捎句话">
+    </div>
+    <footer class="order-foot">
+      <div class="order-btn" @click="Order()">
+        一点回收
+      </div>
+      <div class="order-tips">
+        切换至大商户回收模式
+      </div>
+    </footer>
+  </div>
 </template>
 <script>
 export default {
-  data(){
-      return{
-          options:[
-              {label:"100以上",selected:false},
-              {label:"50-100",selected:false},
-              {label:"1-50",selected:false}
-          ],
-          selectedOptions:"请选择"
+  data() {
+    return {
+      addressData:[
+                {Id:1,location:"江苏省无锡市江南大学",detail:"8幢502室",name:"林海瑞",tel:"13588888888" },
+                {Id:2,location:"浙江省杭州市海曙路58号",detail:"8幢719室",name:"王懿琦",tel:"13588888888" },
+                {Id:3,location:"浙江省温州市泰顺县",detail:"三魁镇府",name:"吴际",tel:"13588888888" }
+            ],
+      type: [
+        {
+          label: "废报纸",
+          price: 0.68,
+          selected: "",
+          weight: 0,
+          selectedOptions: "请选择",
+          options: [
+            { label: "100以上", selected: false, key: 150 },
+            { label: "50-100", selected: false, key: 75 },
+            { label: "1-50", selected: false, key: 25 }
+          ]
+        },
+        {
+          label: "废塑料",
+          price: 0.58,
+          selected: "",
+          weight: 0,
+          selectedOptions: "请选择",
+          options: [
+            { label: "100以上", selected: false, key: 150 },
+            { label: "50-100", selected: false, key: 75 },
+            { label: "1-50", selected: false, key: 25 }
+          ]
+        },
+        {
+          label: "废金属",
+          price: 3.56,
+          selected: "",
+          weight: 0,
+          selectedOptions: "请选择",
+          options: [
+            { label: "100以上", selected: false, key: 150 },
+            { label: "50-100", selected: false, key: 75 },
+            { label: "1-50", selected: false, key: 25 }
+          ]
+        }
+      ],
+      orderInfo: {
+        addressId: 0,
+        starttime: null,
+        fromId: null,
+        toId: null,
+        detail: "",
+        state: "待接单"
       }
+    };
   },
-  methods:{
-      animateEnter(){
-          $(".weight-options").animate({right:-37})
-      },
-      animateLeave(){
-          $(".weight-options").animate({right:-250})
-      },
-      Select(item){
-          this.selectedOptions = item.label;
-
-          this.options.forEach(function(item){         
-                  item.selected = false;
-          })
-          item.selected = true;
+  methods: {
+    animateEnter(index) {
+      $(".weight-options")
+        .eq(index)
+        .animate({ right: 10});
+    },
+    animateLeave(index) {
+      $(".weight-options")
+        .eq(index)
+        .animate({ right: -250 });
+    },
+    Select(item, Opitem) {
+      item.selectedOptions = Opitem.label;
+      item.weight = Opitem.key;
+      console.log(item.selectedOptions);
+      item.options.forEach(function(Opitem) {
+        Opitem.selected = false;
+      });
+      Opitem.selected = true;
+    },
+    Order() {
+      let time = new Date();
+      let tempDetail = {
+        废报纸: 0,
+        废塑料: 0,
+        废金属: 0
+      };
+      this.type.forEach(function(item) {
+        if (item.label === "废报纸") {
+          tempDetail.废报纸 = item.weight;
+        } else if (item.label === "废塑料") {
+          tempDetail.废塑料 = item.weight;
+        } else {
+          tempDetail.废金属 = item.weight;
+        }
+      });
+      console.log(time.toLocaleString());
+      this.orderInfo.detail = JSON.stringify(tempDetail);
+      this.orderInfo.addressId = this.$route.params.id;
+      console.log(JSON.stringify(this.orderInfo));
+    },
+    Change(e){
+      this.readURL(document.getElementById("imgInp"));
+    },
+    readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          $("#blah").attr("src", e.target.result);
+          console.log(e.target.result);
           
+        };
+        reader.readAsDataURL(input.files[0]);
       }
+    }
+  },
+  mounted() {
+    console.log(this.addressData);
+    
   }
-}
+};
 </script>
 <style scoped>
-.fill-order{
-    width: 100%;
-    height: 100vh   ;
-    background-color: #F2F2F2;
+.fill-order {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f2f2f2;
+  overflow: hidden;
 }
-.add-addr{
-    overflow:hidden;
-    width: 100%;
-    height: 69px;
-    background:  linear-gradient(to right, #6ee0ff, #32aafa);
+.add-addr {
+  font-family: "苹方";
+  overflow: hidden;
+  width: 100%;
+  height: 69px;
+  background: linear-gradient(to right, #6ee0ff, #32aafa);
 }
-.addr-btn{
-    font-family: "苹方";
-    width: 138px;
-    height: 33px;
-    margin: auto;
-    margin-top: 15px;
-    border: #FFF solid 1px;
-    border-radius: 16px;
-    line-height: 33px;
-    text-align: center;
-    color: #FFF;
-    font-size: 14px;
+.addr-btn {
+  width: 138px;
+  height: 33px;
+  margin: auto;
+  margin-top: 15px;
+  border: #fff solid 1px;
+  border-radius: 16px;
+  line-height: 33px;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
 }
-.order-time{
-    font-family: "苹方";
-    line-height: 50px;
-    height: 50px;
-    width:  100%;
-    background-color: #FFF;
-    font-size: 14px;
-    font-weight: bold;
+.addr-info {
+  font-weight: bold;
+  line-height: 69px;
+  font-size: 18px;
+  color: #fff;
+  padding-left: 20px;
 }
-.order-time-label{
-    margin-left: 20px;
+.order-time {
+  font-family: "苹方";
+  line-height: 50px;
+  height: 50px;
+  width: 100%;
+  background-color: #fff;
+  font-size: 14px;
+  font-weight: bold;
 }
-.order-time-option{
-    float: right;
-    margin-right: 20px;
-    color: #32AAFA;
+.order-time-label {
+  margin-left: 20px;
 }
-.type-panel{
-    width: 96%;
-    margin: 10px auto;
+.order-time-option {
+  float: right;
+  margin-right: 20px;
+  color: #32aafa;
 }
-.type-item{
-       display: flex;
-    background: #FFF;
-    width: 100%;
-    height: 50px;
- 
-    line-height: 50px;
-    border-radius: 3px;
-    box-shadow:0 0 5px rgba(204, 204, 204, 0.349019607843137);  
-    text-align: center;
-    margin-bottom: 1px;
+.type-panel {
+  width: 96%;
+  margin: 10px auto;
 }
-.type-item-contanier{
-    display: flex;
-    overflow: hidden;
-    width: 90%;
-    margin: 0 auto;
+.type-item {
+  display: flex;
+  background: #fff;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 3px;
+  box-shadow: 0 0 5px rgba(204, 204, 204, 0.349019607843137);
+  text-align: center;
+  margin-bottom: 1px;
 }
-.type-label{
-  
-    font-size: 16px;
-    color: #333;
+.type-item-contanier {
+  display: flex;
+  overflow: hidden;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
 }
-.type-price{
-    margin-left: 10px;
-    font-size: 12px;
-    color: #FFAA42;
+.type-label {
+  font-size: 16px;
+  color: #333;
 }
-.type-btn{
-    align-self: center;
-    position: absolute;
-    right: 27px;
-    height: 27px;
-    width: 62px;
-    border: #32aafa solid 1px;
-    border-radius: 13px;
-    line-height: 27px;
-    font-size: 11px;
-    color: #32aafa;
+.type-price {
+  margin-left: 10px;
+  font-size: 12px;
+  color: #ffaa42;
 }
-.weight-options{
-    position: relative;
-    right: -250px;
-    display: flex;
-    align-self: center;
-    width: 175px;
-    height: 30px;
-    border-radius: 15px;
-    background:  linear-gradient(to right, #6ee0ff, #32aafa);
+.type-btn {
+  align-self: center;
+  position: absolute;
+  right: 10px;
+  height: 27px;
+  width: 62px;
+  border: #32aafa solid 1px;
+  border-radius: 13px;
+  line-height: 27px;
+  font-size: 12px;
+  color: #32aafa;
 }
-.weight-option-item{
-    align-self: center;
-    height: 23px;
-    width: 50px;
-    margin-left: 5px;
-    border-radius: 11px;
-    font-size: 9px;
-    color: #fff;
-    line-height: 23px;
+.weight-options {
+  position: absolute;
+  right: -250px;
+  display: flex;
+  align-self: center;
+  width: 175px;
+  height: 30px;
+  border-radius: 15px;
+  background: linear-gradient(to right, #6ee0ff, #32aafa);
 }
-.selected{
-    background-color: #FFF;
-    color: #32aafa;
+.weight-option-item {
+  align-self: center;
+  height: 23px;
+  width: 50px;
+  margin-left: 5px;
+  border-radius: 11px;
+  font-size: 9px;
+  color: #fff;
+  line-height: 23px;
 }
-.pic-panel{
-    overflow: hidden;
-    width: 96%;
-    margin: 10px auto;
-    height: 109px;
-    box-shadow:0 0 5px rgba(204, 204, 204, 0.349019607843137);
-    background: #FFF;
-    border-radius: 3px;
+.selected {
+  background-color: #fff;
+  color: #32aafa;
 }
-.pic-label{
-    margin-top: 7px;
-    margin-left: 24px;
-    font-size: 14px;
-    color: #333;
+.pic-panel {
+  overflow: hidden;
+  width: 96%;
+  margin: 10px auto;
+  height: 109px;
+  box-shadow: 0 0 5px rgba(204, 204, 204, 0.349019607843137);
+  background: #fff;
+  border-radius: 3px;
 }
-.pic-btn{
-    width: 60px;
-    height: 60px;
-    margin-top: 7px;
-    margin-left: 22px;
+.pic-label {
+  margin-top: 7px;
+  margin-left: 24px;
+  font-size: 14px;
+  color: #333;
 }
-img{
-    width: 100%;
-    height: 100%;
+.pic-btn {
+  width: 60px;
+  height: 60px;
+  margin-top: 7px;
+  margin-left: 22px;
 }
-.msg-panel{
-
-    display: flex;
-    width: 96%;
-    margin: 10px auto;
-    height: 50px;
-    box-shadow:0 0 5px rgba(204, 204, 204, 0.349019607843137);
-    background: #FFF;
-    border-radius: 3px;
+.file-btn {
+  margin-top: 7px;
+  margin-left: 22px;
+  width: 60px;
+  height: 60px;
+  position: relative;
+  top: -65px;
+  overflow: hidden;
+  opacity: 0;
 }
-.msg-label{
-    margin-left: 24px;
-    line-height: 50px;
-    font-size: 14px;
-    color: #333;
+img {
+  width: 100%;
+  height: 100%;
 }
-.msg-input{
-     font-family: "苹方";
-     margin-left: 10px;
-    border:none;
-    outline: medium;
-    height: 20px;
-    align-self: center;
+.msg-panel {
+  display: flex;
+  width: 96%;
+  margin: 10px auto;
+  height: 50px;
+  box-shadow: 0 0 5px rgba(204, 204, 204, 0.349019607843137);
+  background: #fff;
+  border-radius: 3px;
 }
-.order-foot{
-    position: fixed;
-    bottom: 0;
-    height: 72px;
-    width: 100%;
+.msg-label {
+  margin-left: 24px;
+  line-height: 50px;
+  font-size: 14px;
+  color: #333;
 }
-.order-btn{
-    width: 96%;
-    margin: 0 auto;
-    height: 42px;
-    background: #32aafa;
-    border-radius: 21px;
-    font-size: 16px;
-    text-align: center;
-    line-height: 42px;
-    font-weight: bold;
-    color: #FFF;
+.msg-input {
+  font-family: "苹方";
+  margin-left: 10px;
+  border: none;
+  outline: medium;
+  height: 20px;
+  align-self: center;
 }
-.order-tips{
-    margin-top: 5px;
-    width: 100%;
-    text-align: center;
-    font-size: 12px;
-    color: #999;
+.order-foot {
+  position: fixed;
+  bottom: 0;
+  height: 72px;
+  width: 100%;
 }
-input::-webkit-input-placeholder{
-    color: #b9b99b;
-    font-size: 14px;
+.order-btn {
+  width: 96%;
+  margin: 0 auto;
+  height: 42px;
+  background: #32aafa;
+  border-radius: 21px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 42px;
+  font-weight: bold;
+  color: #fff;
+}
+.order-tips {
+  margin-top: 5px;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  color: #999;
+}
+input::-webkit-input-placeholder {
+  color: #b9b99b;
+  font-size: 14px;
 }
 </style>
 

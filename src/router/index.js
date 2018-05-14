@@ -14,7 +14,8 @@ import Leaderboard from '@/page/Leaderboard'
 import TradingHall from '@/page/TradingHall'
 import Charity from '@/page/Charity'
 import FillOrder from '@/page/FillOrder'
-
+import Address from '@/page/Address'
+import Addaddr from '@/page/Addaddr'
 import ThemeDay from '@/page/ThemeDay'
 import OrderList from '@/page/OrderList'
 import Evaluation from '@/page/Evaluation'
@@ -89,7 +90,7 @@ export default new Router({
       component: Charity
     },
     {
-      path: '/fillOrder',
+      path: '/fillOrder/:id',
       name: FillOrder,
       component: FillOrder
     },
@@ -109,6 +110,18 @@ export default new Router({
       path: '/evaluation',
       name: Evaluation,
       component: Evaluation
+    }
+    ,
+    {
+      path: '/address',
+      name: Address,
+      component: Address
+    }
+    ,
+    {
+      path: '/addaddr',
+      name: Addaddr,
+      component: Addaddr
     }
   ]
 })

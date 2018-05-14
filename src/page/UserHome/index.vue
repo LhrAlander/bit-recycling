@@ -2,7 +2,7 @@
   <div class="user-home">
     <header class="head">
       <div class="head-icon">
-        <router-link to="/fillOrder">
+        <router-link :to="'/fillOrder/'+'0'">
           <img src="/static/icon/Receipt.png">
         </router-link>
         
