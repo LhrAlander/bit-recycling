@@ -41,86 +41,86 @@ export default new Router({
     },
     {
       path: '/login',
-      name: Login,
+      name: 'Login',
       component: Login
     },
     {
       path: '/personal',
-      name: Personal,
+      name: 'Personal',
       component: Personal
     },
     {
       path: '/price',
-      name: Price,
+      name: 'Price',
       component: Price
     },
     {
       path: '/category',
-      name: Category,
+      name: 'Category',
       component: Category
     },
     {
       path: '/companyDetail',
-      name: CompanyDetail,
+      name: 'CompanyDetail',
       component: CompanyDetail
     },
     {
       path: '/userHome',
-      name: UserHome,
+      name: 'UserHome',
       component: UserHome
     },
     {
       path: '/basket',
-      name: Basket,
+      name: 'Basket',
       component: Basket
     },
     {
       path: '/leaderboard',
-      name: Leaderboard,
+      name: 'Leaderboard',
       component: Leaderboard
     },
     {
       path: '/tradingHall',
-      name: TradingHall,
+      name: 'TradingHall',
       component: TradingHall
     },
     {
       path: '/charity',
-      name: Charity,
+      name: 'Charity',
       component: Charity
     },
     {
       path: '/fillOrder/:id',
-      name: FillOrder,
+      name: 'FillOrder',
       component: FillOrder
     },
     {
       path: '/themeDay',
-      name: ThemeDay,
+      name: 'ThemeDay',
       component: ThemeDay
     },
     ,
     {
       path: '/orderList',
-      name: OrderList,
+      name: 'OrderList',
       component: OrderList
     }
     ,
     {
       path: '/evaluation',
-      name: Evaluation,
+      name: 'Evaluation',
       component: Evaluation
     }
     ,
     {
       path: '/address',
-      name: Address,
+      name: 'Address',
       component: Address
     }
     ,
     {
       path: '/addaddr',
-      name: Addaddr,
+      name: 'Addaddr',
       component: Addaddr
     }
   ]

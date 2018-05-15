@@ -5,7 +5,7 @@
         <div class="addr-btn" v-if="$route.params.id == 0">
           +添加地址
         </div>
-        <div class="addr-info" v-for="item in addressData" v-if="$route.params.id == item.Id">
+        <div class="addr-info" v-for="item in addressData" :key="item.id" v-if="$route.params.id == item.id">
           {{item.location}}{{item.detail}}
         </div>
       </router-link>
@@ -15,13 +15,13 @@
       <span class="order-time-option">立即(默认)</span>
     </div>
     <div class="type-panel">
-      <div class="type-item" v-for="(item,index) in type">
+      <div class="type-item" v-for="(item,index) in type" :key="index">
         <div class="type-item-contanier">
           <div class="type-label">{{item.label}}</div>
           <div class="type-price">{{item.price}}元/斤</div>
           <div class="type-btn" @click="animateEnter(index)">{{item.selectedOptions}}</div>
           <div class="weight-options" @click="animateLeave(index)">
-            <div class="weight-option-item" v-for="(Opitem,index) in item.options" :class="{'selected':Opitem.selected}" @click="Select(item,Opitem)">
+            <div class="weight-option-item" :key="index" v-for="(Opitem,index) in item.options" :class="{'selected':Opitem.selected}" @click="Select(item,Opitem)">
               {{Opitem.label}}
             </div>
           </div>
@@ -45,7 +45,7 @@
       <input type="text" class="msg-input" placeholder="给回收员捎句话">
     </div>
     <footer class="order-foot">
-      <div class="order-btn" @click="Order()">
+      <div class="order-btn" @click="Order">
         一点回收
       </div>
       <div class="order-tips">
@@ -55,14 +55,33 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
-      addressData:[
-                {Id:1,location:"江苏省无锡市江南大学",detail:"8幢502室",name:"林海瑞",tel:"13588888888" },
-                {Id:2,location:"浙江省杭州市海曙路58号",detail:"8幢719室",name:"王懿琦",tel:"13588888888" },
-                {Id:3,location:"浙江省温州市泰顺县",detail:"三魁镇府",name:"吴际",tel:"13588888888" }
-            ],
+      addressData: [
+        {
+          id: 1,
+          location: "江苏省无锡市江南大学",
+          detail: "8幢502室",
+          name: "林海瑞",
+          tel: "13588888888"
+        },
+        {
+          id: 2,
+          location: "浙江省杭州市海曙路58号",
+          detail: "8幢719室",
+          name: "王懿琦",
+          tel: "13588888888"
+        },
+        {
+          id: 3,
+          location: "浙江省温州市泰顺县",
+          detail: "三魁镇府",
+          name: "吴际",
+          tel: "13588888888"
+        }
+      ],
       type: [
         {
           label: "废报纸",
@@ -103,7 +122,7 @@ export default {
       ],
       orderInfo: {
         addressId: 0,
-        starttime: null,
+        startTime: null,
         fromId: null,
         toId: null,
         detail: "",
@@ -115,7 +134,7 @@ export default {
     animateEnter(index) {
       $(".weight-options")
         .eq(index)
-        .animate({ right: 10});
+        .animate({ right: 10 });
     },
     animateLeave(index) {
       $(".weight-options")
@@ -147,12 +166,25 @@ export default {
           tempDetail.废金属 = item.weight;
         }
       });
-      console.log(time.toLocaleString());
+      let startTime = `${time.toLocaleDateString()} ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`;
+      console.log(startTime);
       this.orderInfo.detail = JSON.stringify(tempDetail);
       this.orderInfo.addressId = this.$route.params.id;
-      console.log(JSON.stringify(this.orderInfo));
+      // this.orderInfo.fromId = window.localStorage.getItem("OID");
+      this.order.fromId = `oEwij06p7u8GpwVw6NSk7xWZ2dIU`
+      this.orderInfo.startTime = startTime;
+      axios
+        .post("/api/user/orders/order", {
+          order: this.orderInfo
+        })
+        .then(res => {
+          console.log("加入成功");
+        })
+        .catch(err => {
+          console.log("加入失败", err);
+        });
     },
-    Change(e){
+    Change(e) {
       this.readURL(document.getElementById("imgInp"));
     },
     readURL(input) {
@@ -161,15 +193,21 @@ export default {
         reader.onload = function(e) {
           $("#blah").attr("src", e.target.result);
           console.log(e.target.result);
-          
         };
         reader.readAsDataURL(input.files[0]);
       }
     }
   },
   mounted() {
-    console.log(this.addressData);
-    
+    axios
+      .get("/api/address/all")
+      .then(res => {
+        console.log(res);
+        this.addressData = res.data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 </script>
