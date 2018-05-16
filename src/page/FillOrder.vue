@@ -298,7 +298,7 @@ export default {
   color: #ffaa42;
 }
 .type-btn {
-  align-self: center;
+  margin-top :12px;
   position: absolute;
   right: 10px;
   height: 27px;
@@ -313,7 +313,7 @@ export default {
   position: absolute;
   right: -250px;
   display: flex;
-  align-self: center;
+   margin-top :12px;
   width: 175px;
   height: 30px;
   border-radius: 15px;
