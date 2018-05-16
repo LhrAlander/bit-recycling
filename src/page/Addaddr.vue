@@ -5,25 +5,25 @@
         <div class="input-label">
           联系人
         </div>
-        <input type="text" placeholder="姓名" v-model="nAddress.name">
+        <input type="text" placeholder="姓名" v-model="addressInfo.name">
       </div>
       <div class="addr-input">
         <div class="input-label">
           电话
         </div>
-        <input type="text" placeholder="手机号码" v-model="nAddress.tel">
+        <input type="text" placeholder="手机号码" v-model="addressInfo.tel">
       </div>
       <div class="addr-input">
         <div class="input-label">
           地址
         </div>
-        <input type="text" placeholder="选择收货地址" v-model="nAddress.location">
+        <input type="text" placeholder="选择收货地址" v-model="addressInfo.location">
       </div>
       <div class="addr-input">
         <div class="input-label">
           门牌号
         </div>
-        <input type="text" placeholder="例：5号楼818室" v-model="nAddress.detail">
+        <input type="text" placeholder="例：5号楼818室" v-model="addressInfo.detail">
       </div>
     </div>
     <div class="add-btn"  @click="Add()">
@@ -32,36 +32,29 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+import axios from 'axios'
 export default {
-  data() {
-    return {
-      nAddress: {
-        name: "",
-        tel: "",
-        location: "",
-        detail: ""
-      }
-    };
-  },
-  methods: {
-    Add() {
-      let addr = this.nAddress.location + this.nAddress.detail;
-      this.nAddress.address = addr
-      console.log(this.nAddress);
-      axios
-        .post(
-          "/api/address/address",
-          {
-            address: this.nAddress
-          }
-        )
-        .then(res => {
-          console.log(res);
-          this.$router.push('/address')
-        });
+  data(){
+    return{
+      addressInfo: {
+      name:'',
+      tel:'',
+      location:'',
+      detail:''}
     }
-  }
+  },
+  methods:{
+      Add(){
+        let addr = this.addressInfo.location+this.addressInfo.detail;
+        console.log(this.addressInfo);
+        axios.post('/api/addr/addAddr', {
+        address: addr
+      },{}).then((response) => {
+        console.log(response);
+      })
+    }
+      }
+
 };
 </script>
 <style scoped>

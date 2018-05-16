@@ -199,6 +199,10 @@ export default {
     }
   },
   mounted() {
+    let o  = document.getElementsByClassName("fill-order")[0];
+    let h =  document.body.clientHeight ; //高度
+    o.style.height = h+"px";
+    
     axios
       .get("/api/address/all")
       .then(res => {
@@ -213,10 +217,11 @@ export default {
 </script>
 <style scoped>
 .fill-order {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: #f2f2f2;
   overflow: hidden;
+  position: relative;
 }
 .add-addr {
   font-family: "苹方";
@@ -387,7 +392,7 @@ img {
   align-self: center;
 }
 .order-foot {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   height: 72px;
   width: 100%;
