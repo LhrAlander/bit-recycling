@@ -15,7 +15,7 @@
             <img src="/static/icon/编辑.png" alt="" class="adrr-btn">
             </router-link>
         </div>
-        <footer class="add-btn">
+        <footer class="add-btn" @click="$router.push('/addaddr')">
             添加地址
         </footer>
     </div>

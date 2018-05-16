@@ -20,18 +20,18 @@
                 <div class="line"></div>
                 <img src="/static/icon/drop.svg" alt="" class="drop-img">
             </div>
-            <div class="order-contanier"   v-for="i in 5">
+            <div class="order-contanier"   v-for="o in orders" :key="o.n">
                 <div class="order-info">
                     <div class="order-introduction">
-                        <div class="intro-txt">您回收了 废报纸、废书纸、废塑料瓶...</div>
-                        <div class="intro-txt">共38斤</div>
+                        <div class="intro-txt">您回收了 <template v-for="_d in o.d">{{_d}}、</template>...</div>
+                        <div class="intro-txt">共{{o.w}}斤</div>
                     </div>
                     <div class="order-income">
                         <div class="income-icon"><img src="/static/icon/money.svg" alt=""></div>
-                        <div class="income-amount">+20</div>
+                        <div class="income-amount">+{{o.p}}</div>
                         <div class="income-icon"><img src="/static/icon/yuan.svg" alt=""></div>
                         <div class="income-amount">+5</div>
-                        <div class="order-date">2018-3-14 8:34</div>
+                        <div class="order-date">{{o.startTime}}</div>
                     </div>
                 </div>
             </div>
@@ -44,6 +44,7 @@
     </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -52,7 +53,8 @@ export default {
         { label: "待认领", selected: false ,postion:"100%"},
         { label: "待回收", selected: false ,postion:"200%"},
         { label: "待评价", selected: false ,postion:"300%"}
-      ]
+      ],
+      orders: []
     };
   },
   methods: {
@@ -63,6 +65,41 @@ export default {
       item.selected = true;
       $(".panel-contanier").animate({right:item.postion});
     }
+  },
+  mounted() {
+    let OID = window.localStorage.getItem('OID')
+    OID = `oEwij0-ryS8R56w2xWriEFaKejiU`
+    axios.post('/api/user/orders/complete', {
+      OID
+    })
+      .then(res => {
+        res.data.forEach(o => {
+          let d = JSON.parse(o.detail)
+          let time = new Date(o.startTime)
+          let startTime = `${time.toLocaleDateString()} ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`;
+          let dn = []
+          let w = 0
+          let p = 0
+          for (let k in d) {
+            let v = d[k]
+            dn.push(k)
+            let wp = v.split('-')
+            console.log(wp)
+            w += parseInt(wp[0])
+            p += parseInt(wp[0]) * parseInt(wp[1])
+          }
+          let _o = {
+            d: dn,
+            w,
+            p,
+            startTime
+          }
+          this.orders.push(_o)
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 };
 </script>

@@ -200,16 +200,24 @@ export default {
       let cts = document.getElementsByClassName("ct");
       let ct = cts[i].getBoundingClientRect();
       let ctTri = this.$refs.ctTriangle;
+      console.log('三角形', ctTri)
       let mNv = document
         .getElementsByClassName("m-nv")[0]
         .getBoundingClientRect();
+      console.log('ct', cts[0], 'ctt', ct)
+      console.log('d', ctTri.getBoundingClientRect(), 'dd', document.getElementsByClassName("m-nv")[0], 'ddd', mNv)
       let left =
-        ct.left +
-        ct.width / 2 -
-        ctTri.getBoundingClientRect().width / 2 -
-        mNv.x +
+        parseFloat(parseFloat(ct.left) +
+        parseFloat(ct.width) / 2 -
+        parseFloat(ctTri.getBoundingClientRect().width) / 2 -
+        parseFloat(mNv.left)) +
         "px";
-      ctTri.style.left = left;
+        console.log('sanjiaox', left)
+        try {
+          ctTri.style.left = left;
+        } catch (err) {
+          console.log(err)
+        }
     },
     changeDMY(i) {
       this.margin = i + 1;
@@ -223,7 +231,7 @@ export default {
       let left =
         dmy.width / 2 +
         dmy.left -
-        udmy.x -
+        udmy.left -
         dmySelect.getBoundingClientRect().width / 2 +
         "px";
       dmySelect.style.left = left;
@@ -243,7 +251,7 @@ export default {
         mn.left +
         mn.width / 2 -
         mTri.getBoundingClientRect().width / 2 -
-        mMonth.x +
+        mMonth.left +
         "px";
       mTri.style.left = left;
       this.$set(this.data, 0, '111')

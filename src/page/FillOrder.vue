@@ -171,7 +171,7 @@ export default {
       this.orderInfo.detail = JSON.stringify(tempDetail);
       this.orderInfo.addressId = this.$route.params.id;
       // this.orderInfo.fromId = window.localStorage.getItem("OID");
-      this.order.fromId = `oEwij06p7u8GpwVw6NSk7xWZ2dIU`
+      this.orderInfo.fromId = `oEwij0-ryS8R56w2xWriEFaKejiU`
       this.orderInfo.startTime = startTime;
       axios
         .post("/api/user/orders/order", {
@@ -320,7 +320,7 @@ export default {
   width: 50px;
   margin-left: 5px;
   border-radius: 11px;
-  font-size: 9px;
+  font-size: 12px;
   color: #fff;
   line-height: 23px;
 }

@@ -17,13 +17,13 @@
         <div class="input-label">
           地址
         </div>
-        <input type="text" placeholder="选择收货地址" v-model="nAddress.address">
+        <input type="text" placeholder="选择收货地址" v-model="nAddress.location">
       </div>
       <div class="addr-input">
         <div class="input-label">
           门牌号
         </div>
-        <input type="text" placeholder="例：5号楼818室" v-model="nAddress.addrDetail">
+        <input type="text" placeholder="例：5号楼818室" v-model="nAddress.detail">
       </div>
     </div>
     <div class="add-btn"  @click="Add()">
@@ -32,29 +32,36 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
-  data(){
-    return{
-      nAddress: [{
-      name:'',
-      tel:'',
-      address:'',
-      addrDetail:''}]
-    }
-  },
-  methods:{
-      Add(){
-        let addr = this.nAddress.address+this.nAddress.addrDetail;
-        console.log(this.nAddress);
-        axios.post('/api/addr/addAddr', {
-        address: addr
-      },{}).then((response) => {
-        console.log(response);
-      })
-    }
+  data() {
+    return {
+      nAddress: {
+        name: "",
+        tel: "",
+        location: "",
+        detail: ""
       }
-
+    };
+  },
+  methods: {
+    Add() {
+      let addr = this.nAddress.location + this.nAddress.detail;
+      this.nAddress.address = addr
+      console.log(this.nAddress);
+      axios
+        .post(
+          "/api/address/address",
+          {
+            address: this.nAddress
+          }
+        )
+        .then(res => {
+          console.log(res);
+          this.$router.push('/address')
+        });
+    }
+  }
 };
 </script>
 <style scoped>
