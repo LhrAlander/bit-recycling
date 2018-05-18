@@ -74,6 +74,7 @@
 <script>
 import util from "@/utils/index.js"
 import CheckInfo from "./components/checkInfo";
+import io from "socket.io-client";
 export default {
   components:{
     CheckInfo
@@ -131,9 +132,26 @@ export default {
   methods:{
      cancelCheck() {
       this.cardshow = false;
+    },
+    initSocket() {
+      this.socket = io.connect("http://localhost:9999");
+      // let OID = window.localStorage.getItem("OID");
+      let OID = `oEwij06p7u8GpwVw6NSk7xWZ2dIU`
+      this.socket.emit("addUser", {
+        OID
+      });
+      this.socket.on("checkOrder", msg => {
+        try {
+         let _order = msg.order
+         // TODO 封装数据
+        } catch (err) {
+          console.log("er", err);
+        }
+      });
     }
   },
   mounted(){
+    this.initSocket()
       let temp = JSON.parse(this.ckdata);
       this.details.newspaper.weight = temp.废报纸.split('-')[0];
       this.details.newspaper.price = temp.废报纸.split('-')[1];
