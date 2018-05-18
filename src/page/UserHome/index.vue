@@ -68,13 +68,38 @@
       </div>
       </router-link>
     </footer>
+    <check-info  @cancelCheck='cancelCheck()'  v-if="cardshow" v-bind:details = "details"></check-info>
   </div>
 </template>
 <script>
 import util from "@/utils/index.js"
+import CheckInfo from "./components/checkInfo";
 export default {
+  components:{
+    CheckInfo
+  },
   data() {
     return {
+      cardshow:true,
+      details: {
+        newspaper: {
+          weight: "",
+          price: ""
+        },
+        book: {
+          weight: "",
+          price: ""
+        },
+        bottle: {
+          weight: "",
+          price: ""
+        },
+        iron: {
+          weight: "",
+          price: ""
+        }
+      },
+      ckdata:"{\"废报纸\":\"19-1\",\"废料瓶\":\"20-5\",\"废书纸\":\"1-1\",\"废钢铁\":\"1-1\"}",
       func: [
         {
           title: "纸板日",
@@ -103,7 +128,24 @@ export default {
       ]
     };
   },
+  methods:{
+     cancelCheck() {
+      this.cardshow = false;
+    }
+  },
   mounted(){
+      let temp = JSON.parse(this.ckdata);
+      this.details.newspaper.weight = temp.废报纸.split('-')[0];
+      this.details.newspaper.price = temp.废报纸.split('-')[1];
+      this.details.book.weight = temp.废书纸.split('-')[0];
+      this.details.book.price = temp.废书纸.split('-')[1];
+      this.details.bottle.weight = temp.废料瓶.split('-')[0];
+      this.details.bottle.price = temp.废料瓶.split('-')[1];
+      this.details.iron.weight = temp.废钢铁.split('-')[0];
+      this.details.iron.price = temp.废钢铁.split('-')[1];
+      console.log(this.details);
+      
+    
     util.getUserInfo(util.getQueryVariable("code"));
   }
 };

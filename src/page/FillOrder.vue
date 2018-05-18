@@ -52,13 +52,19 @@
         切换至大商户回收模式
       </div>
     </footer>
+ 
   </div>
 </template>
 <script>
 import axios from "axios";
+
 export default {
+  component:{
+
+  },
   data() {
     return {
+ 
       addressData: [
         {
           id: 1,
