@@ -176,8 +176,8 @@ export default {
       console.log(startTime);
       this.orderInfo.detail = JSON.stringify(tempDetail);
       this.orderInfo.addressId = this.$route.params.id;
-      // this.orderInfo.fromId = window.localStorage.getItem("OID");
-      this.orderInfo.fromId = `oEwij0-ryS8R56w2xWriEFaKejiU`
+      this.orderInfo.fromId = window.localStorage.getItem("OID");
+      // this.orderInfo.fromId = `oEwij0-ryS8R56w2xWriEFaKejiU`
       this.orderInfo.startTime = startTime;
       axios
         .post("/api/user/orders/order", {
