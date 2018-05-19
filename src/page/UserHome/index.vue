@@ -81,25 +81,9 @@ export default {
   data() {
     return {
       cardshow:true,
-      details: {
-        newspaper: {
-          weight: "",
-          price: ""
-        },
-        book: {
-          weight: "",
-          price: ""
-        },
-        bottle: {
-          weight: "",
-          price: ""
-        },
-        iron: {
-          weight: "",
-          price: ""
-        }
-      },
-      ckdata:"{\"废报纸\":\"19-1\",\"废料瓶\":\"20-5\",\"废书纸\":\"1-1\",\"废钢铁\":\"1-1\"}",
+      details:[],
+      
+      ckdata:"{\"废报纸\":\"20-5\",\"废料瓶\":\"20-5\",\"废书纸\":\"1-1\",\"废钢铁\":\"1-1\"}",
       func: [
         {
           title: "纸板日",
@@ -135,14 +119,30 @@ export default {
   },
   mounted(){
       let temp = JSON.parse(this.ckdata);
-      this.details.newspaper.weight = temp.废报纸.split('-')[0];
-      this.details.newspaper.price = temp.废报纸.split('-')[1];
-      this.details.book.weight = temp.废书纸.split('-')[0];
-      this.details.book.price = temp.废书纸.split('-')[1];
-      this.details.bottle.weight = temp.废料瓶.split('-')[0];
-      this.details.bottle.price = temp.废料瓶.split('-')[1];
-      this.details.iron.weight = temp.废钢铁.split('-')[0];
-      this.details.iron.price = temp.废钢铁.split('-')[1];
+     
+      for(let key in temp){
+         let detail =  {
+        label:"",
+        weight:"",
+        price:"",
+        total:0
+      }
+
+        detail.label = key;
+        detail.weight = temp[key].split('-')[0];
+        detail.price = temp[key].split('-')[1];
+        detail.total = parseFloat(detail.weight)*parseFloat(detail.price)
+
+        this.details.push(detail);
+      }
+      // this.details.newspaper.weight = temp.废报纸.split('-')[0];
+      // this.details.newspaper.price = temp.废报纸.split('-')[1];
+      // this.details.book.weight = temp.废书纸.split('-')[0];
+      // this.details.book.price = temp.废书纸.split('-')[1];
+      // this.details.bottle.weight = temp.废料瓶.split('-')[0];
+      // this.details.bottle.price = temp.废料瓶.split('-')[1];
+      // this.details.iron.weight = temp.废钢铁.split('-')[0];
+      // this.details.iron.price = temp.废钢铁.split('-')[1];
       console.log(this.details);
       
     

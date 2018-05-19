@@ -10,10 +10,10 @@
 				<div class="table-main">
 					<div class="column">
 						<span class="title">种类</span>
-						<div class="item">
-							<span class="category">废报纸</span>
+						<div class="item" v-for="item in details">
+							<span class="category">{{item.label}}</span>
 						</div>
-						<div class="item">
+						<!-- <div class="item">
 							<span class="category">废书纸</span>
 						</div>
 						<div class="item">
@@ -21,44 +21,28 @@
 						</div>
 						<div class="item">
 							<span class="category">废钢铁</span>
-						</div>
+						</div> -->
 					</div>
 					<div class="column">
 						<span class="title">重量(斤)</span>
-						<div class="item">
-							<input class='my-input' v-model="details.newspaper.weight" type="text" placeholder="请输入">
+						<div class="item" v-for="item in details">
+							<input class='my-input' v-model="item.weight" type="text" placeholder="请输入">
 						</div>
-						<div class="item">
-							<input type="text" v-model="details.book.weight" placeholder="请输入">
-						</div>
-						<div class="item">
-							<input type="text" v-model="details.bottle.weight" placeholder="请输入">
-						</div>
-						<div class="item">
-							<input type="text" v-model="details.iron.weight" placeholder="请输入">
-						</div>
+					
 					</div>
 					<div class="column">
 						<span class="title">单价(角/斤)</span>
-						<div class="item">
-							<input type="text" v-model="details.newspaper.price" placeholder="请输入">
+						<div class="item" v-for="item in details">
+							<input type="text" v-model="item.price" placeholder="请输入">
 						</div>
-						<div class="item">
-							<input type="text" v-model="details.book.price" placeholder="请输入">
-						</div>
-						<div class="item">
-							<input type="text" v-model="details.bottle.price" placeholder="请输入">
-						</div>
-						<div class="item">
-							<input type="text" v-model="details.iron.price" placeholder="请输入">
-						</div>
+					
 					</div>
 					<div class="column">
 						<span class="title">总价(元)</span>
-						<div class="item">
-							<input type="text" v-model="newspaperTotal" disabled='true'>
+						<div class="item" v-for="item in details">
+							<input type="text" v-model="item.total" disabled='true'>
 						</div>
-						<div class="item">
+						<!-- <div class="item">
 							<input type="text" v-model="bookTotal" disabled='true'>
 						</div>
 						<div class="item">
@@ -66,7 +50,7 @@
 						</div>
 						<div class="item">
 							<input type="text" v-model="ironTotal" disabled='true'>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<div class="total">
@@ -115,12 +99,11 @@ export default {
   computed: {
    
     totalValue() {
-      return parseFloat(
-        parseFloat(this.newspaperTotal) +
-          parseFloat(this.bookTotal) +
-          parseFloat(this.bottleTotal) +
-          parseFloat(this.ironTotal)
-      );
+      let value = 0;
+      this.details.forEach(function (item) {
+              value += item.total;
+      });
+      return value;
     },
     newspaperTotal() {
       if (
@@ -219,7 +202,8 @@ input:focus::placeholder {
   z-index: 1502;
 }
 .card {
-  /* height: 58.869%; */
+ 
+  height: auto!important;
   width: 89.866%;
   background: #fff;
   /* margin-top: -3rem; */
@@ -228,9 +212,10 @@ input:focus::placeholder {
   text-align: center;
   line-height: normal;
   border-radius: 0.475em;
+  overflow:hidden;
 }
 .hd {
-  height: 12.31%;
+  height: 50px;
   width: 100%;
   background: linear-gradient(to right, #6ee0ff, #32aafa);
   border-radius: 0.475em 0.475em 0 0;
